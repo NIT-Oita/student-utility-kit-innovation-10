@@ -1,8 +1,9 @@
-#include <stdio.h>
-#include <string.h>
-#include "logic.h"
 
-/* UI関数（ui.cにある想定） */
+#include <stdio.h>
+#include "logic.h"
+#include "storage.h"
+
+/* ui関数 */
 void show_menu(void);
 int input_choice(void);
 void input_task(Task *t);
@@ -16,8 +17,6 @@ int main(void)
     int count = 0;
     int choice;
 
-    char today[11] = "2026-01-01"; // 仮（本当は入力でもOK）
-
     while (1) {
 
         show_menu();
@@ -25,23 +24,30 @@ int main(void)
 
         if (choice == 0) break;
 
-        /* ① 追加 */
-        if (choice == 1) {
-            if (count >= MAX) {
-                printf("これ以上追加できません\n");
-                continue;
-            }
-
+        /* 追加 */
+        else if (choice == 1) {
             input_task(&list[count]);
             list[count].id = count;
             list[count].done = 0;
             count++;
         }
 
-        /* ② 表示（順位付け） */
+        /* 表示 */
         else if (choice == 2) {
             task_sort(list, count);
             show_tasks(list, count);
+        }
+
+        /* 保存 */
+        else if (choice == 3) {
+            save_tasks(list, count);
+            printf("保存しました\n");
+        }
+
+        /* 読み込み */
+        else if (choice == 4) {
+            load_tasks(list, &count);
+            printf("読み込み完了\n");
         }
 
         else {
