@@ -1,23 +1,52 @@
-
 #include <stdio.h>
-#include "logic.h"
-int load_tasks(const char *path,
-                Task *list, int max) {
-    FILE *fp = fopen(path, "r");
-    if (!fp) return 0;        /* ファイルがまだ無い */
+#include "storage.h"
 
-    char line[256];
-    fgets(line, sizeof line, fp);   /* ヘッダ行を読み飛ばす */
+#define FILE_NAME "tasks.csv"
 
-    int n = 0;
-    while (n < max &&
-            fscanf(fp, "%d,%63[^,],%10[^,],%d,%d\n",
-                &list[n].id, list[n].title,
-                list[n].deadline,
-                &list[n].priority,
-                &list[n].done) == 5) {
-        n++;
+void save_tasks(Task list[], int count)
+{
+    FILE *fp = fopen(FILE_NAME, "w");
+
+    if (fp == NULL) {
+        printf("ファイルを開けません\n");
+        return;
     }
+
+    for (int i = 0; i < count; i++) {
+        fprintf(fp,
+                "%d,%s,%s,%d,%d\n",
+                list[i].id,
+                list[i].title,
+                list[i].deadline,
+                list[i].priority,
+                list[i].done);
+    }
+
     fclose(fp);
-    return n;
+}
+
+void load_tasks(Task list[], int *count)
+{
+    FILE *fp = fopen(FILE_NAME, "r");
+
+    if (fp == NULL) {
+        *count = 0;
+        return;
+    }
+
+    *count = 0;
+
+    while (*count < MAX_TASKS &&
+           fscanf(fp,
+                  "%d,%63[^,],%10[^,],%d,%d\n",
+                  &list[*count].id,
+                  list[*count].title,
+                  list[*count].deadline,
+                  &list[*count].priority,
+                  &list[*count].done) == 5) {
+
+        (*count)++;
+    }
+
+    fclose(fp);
 }
