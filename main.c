@@ -29,7 +29,6 @@ int main(void)
 
         show_menu();
         choice = input_choice();
-
         switch (choice) {
         /*
          * 終了
@@ -80,39 +79,21 @@ int main(void)
         {
 
             int id;
-
-
             id = input_id();
-
-
 
             if (task_toggle_done(list, count, id)) {
 
-
                 printf("状態を変更しました\n");
-
 
             }
             else {
 
-
                 printf("IDが見つかりません\n");
-
 
             }
 
-
-
             break;
-
         }
-
-
-
-
-
-
-
 
         /*
          * 削除
@@ -121,123 +102,64 @@ int main(void)
         {
 
             int id;
-
-
-
             id = input_id();
-
-
-
 
             if (task_delete(list, &count, id)) {
 
-
                 printf("削除しました\n");
-
 
             }
             else {
 
-
                 printf("IDが見つかりません\n");
 
-
             }
-
-
-
-
             break;
-
         }
-
-
-
-
-
-
 
         /*
          * 手動保存
          */
         case 5:
 
-
-
             if (save_tasks(list, count)) {
 
-
                 printf("保存しました\n");
-
 
             }
             else {
 
-
                 printf("保存に失敗しました\n");
-
 
             }
 
-
-
             break;
-
-
-
-
-
-
 
         /*
          * 手動読み込み
          */
         case 6:
 
-
-
             if (load_tasks(list, &count)) {
 
-
                 next_id = get_next_id(list, count);
-
-
-
                 printf("読み込みました\n");
-
 
             }
             else {
 
-
                 printf("読み込みファイルがありません\n");
-
 
             }
 
-
-
             break;
-
-
-
-
-
-
 
         default:
 
-
             show_error();
-
-
             break;
-
         }
-
     }
-
-
 
     return 0;
 }
