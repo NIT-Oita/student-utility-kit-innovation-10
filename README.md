@@ -36,9 +36,9 @@
 
 | メンバー | 役割 | 担当ファイル |
 |---|---|---|
-| **A** | メインロジック（計算・判定） | `logic.c` `logic.h` |
-| **B** | データ管理（ファイルI/O） | `storage.c` `storage.h` |
-| **C** | UI（メニュー・入力チェック） | `ui.c` `main.c` |
+| **坂之下　煌登** | メインロジック（計算・判定） | `logic.c` `logic.h` |
+| **松山　琥珀** | データ管理（ファイルI/O） | `storage.c` `storage.h` |
+| **小野　陸斗** | UI（メニュー・入力チェック） | `ui.c` `main.c` |
 
 全員がGitで互いのプルリクエストをレビュー。
 
@@ -171,11 +171,11 @@ gcc -Wall -Wextra -fsanitize=address ...
 
 > **編集してください** — Edit this section
 
-- **メンバー A** — 氏名 (学籍番号) — `email@example.com`
-- **メンバー B** — 氏名 (学籍番号) — `email@example.com`
-- **メンバー C** — 氏名 (学籍番号) — `email@example.com`
+- **坂之下　煌登** —s2520— `s2520@oita.kosen-ac.jp`
+- **松山　琥珀** —s2536— `s2536@oita.kosen-ac.jp`
+- **小野　陸斗** —s2511— `s2511@oita.kosen-ac.jp`
 
-班番号: **Group ## (要記入)**
+班番号: **Group 10**
 
 ---
 
